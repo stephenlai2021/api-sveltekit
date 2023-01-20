@@ -16,6 +16,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "^1.0.5",
 		"firebase": "^8.10.1",
 		"twilio": "^3.84.1"
 	}
