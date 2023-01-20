@@ -11,12 +11,12 @@
   const configuration = {
     iceServers: [
       ...turnServers,
-      // {
-      //   urls: [
-      //     "stun:stun1.l.google.com:19302",
-      //     "stun:stun2.l.google.com:19302",
-      //   ],
-      // },
+      {
+        urls: [
+          "stun:stun1.l.google.com:19302",
+          "stun:stun2.l.google.com:19302",
+        ],
+      },
     ],
     iceTransportPolicy: "relay",
     iceCandidatePoolSize: 10,
