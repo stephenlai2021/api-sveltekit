@@ -16,28 +16,28 @@
   let btnHangup = true;
   let pc = null;
   let callInput = null;
-  let configuration = {}
+  let configuration = {};
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDmd4MyKJTYeQ3OonYZjZg0YMvwUHnDsnY",
-    authDomain: "webrtc-firebase-f235b.firebaseapp.com",
-    projectId: "webrtc-firebase-f235b",
-    storageBucket: "webrtc-firebase-f235b.appspot.com",
-    messagingSenderId: "833747712008",
-    appId: "1:833747712008:web:e09aa766b17524333139bd",
-    measurementId: "G-H8M3MGYJHP",
-  };
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyDmd4MyKJTYeQ3OonYZjZg0YMvwUHnDsnY",
+  //   authDomain: "webrtc-firebase-f235b.firebaseapp.com",
+  //   projectId: "webrtc-firebase-f235b",
+  //   storageBucket: "webrtc-firebase-f235b.appspot.com",
+  //   messagingSenderId: "833747712008",
+  //   appId: "1:833747712008:web:e09aa766b17524333139bd",
+  //   measurementId: "G-H8M3MGYJHP",
+  // };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-  const firestore = firebase.firestore();
+  // if (!firebase.apps.length) {
+  //   firebase.initializeApp(firebaseConfig);
+  // }
+  // const firestore = firebase.firestore();
 
   const getTurnServers = async () => {
     const res = await fetch("/api/get-turn-credentials");
     const json = await res.json();
 
-    turnServers = json.token.iceServers
+    turnServers = json.token.iceServers;
 
     configuration = {
       iceServers: [
@@ -56,7 +56,7 @@
   };
 
   onMount(async () => {
-    getTurnServers()
+    // getTurnServers();
 
     pc = new RTCPeerConnection(configuration);
 
@@ -78,7 +78,7 @@
       });
     };
 
-    // webcamVideo.srcObject = localStream;
+    webcamVideo.srcObject = localStream;
     remoteVideo.srcObject = remoteStream;
 
     btnCall = false;
@@ -171,13 +171,13 @@
 <div class="container">
   <h2>1. Start your Webcam</h2>
   <div class="videos">
-    <!-- <span>
+    <span>
       <h3>Local Stream</h3>
       <video id="webcamVideo" autoplay playsinline>
         <track kind="captions" />
       </video>
       <track kind="captions" />
-    </span> -->
+    </span>
     <span>
       <h3>Remote Stream</h3>
       <video id="remoteVideo" autoplay playsinline>
@@ -186,20 +186,29 @@
     </span>
   </div>
 
-  <button id="webcamButton" disabled={btnWebcam}>Start webcam</button>
+  <!-- <button disabled={btnWebcam}>Start webcam</button> -->
   <h2>2. Create a new Call</h2>
-  <button on:click={generatePeerId} disabled={btnCall}
-    >Create Call (offer)</button
+  <!-- on:click={generatePeerId}  -->
+  <button 
+    disabled={btnCall}
   >
+    Create Call (offer)
+  </button>
 
   <h2>3. Join a Call</h2>
   <p>Answer the call from a different browser window or device</p>
 
-  <input bind:value={callInput} placeholder="Peer ID" />
-  <!-- <button on:click={answerCall} disabled={btnAnswer}>Answer</button> -->
-  <button on:click={callPeer} disabled={btnAnswer}>Call</button>
+  <input 
+    bind:value={callInput} 
+    placeholder="Peer ID" 
+  />
+  <!-- on:click={callPeer}  -->
+  <button 
+    disabled={btnAnswer}
+  >
+    Call
+  </button>
 
-  <h2>4. Hangup</h2>
-
-  <button id="hangupButton" disabled={btnHangup}>Hangup</button>
+  <!-- <h2>4. Hangup</h2>
+  <button disabled={btnHangup}>Hangup</button> -->
 </div>
