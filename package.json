@@ -16,6 +16,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"firebase": "^8.10.1",
 		"twilio": "^3.84.1"
 	}
 }
