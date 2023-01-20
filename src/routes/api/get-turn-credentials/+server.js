@@ -3,7 +3,7 @@ import twilio from 'twilio'
 
 export const GET = async () => {
   const accountSid = "ACbd051822a344707fd90b94d91d284311"
-  const authToken = "32134c63bc47ca02b5323f66eddf825a"
+  const authToken = "9cc7c56e0ec2a450210b54aec9c4bcb7"
   // const client = twilio(accountSid, authToken, { lazyloading: true })  
   const client = twilio(accountSid, authToken)  
 
